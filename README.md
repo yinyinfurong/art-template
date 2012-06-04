@@ -23,7 +23,7 @@ artTemplate 这一切都在 1.7kb(gzip) 中实现！
 
 ## 在线预览
 
-帮助文档： http://aui.github.com/artTemplate/
+使用帮助： http://aui.github.com/artTemplate/
 
 负荷测试： http://aui.github.com/artTemplate/test/test-speed.html
 
