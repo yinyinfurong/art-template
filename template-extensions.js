@@ -1,15 +1,16 @@
 /*!
- * artTemplate - Syntax Expansion
+ * artTemplate - Syntax Extensions
  * https://github.com/aui/artTemplate
  * Released under the MIT, BSD, and GPL Licenses
  * Email: 1987.tangbin@gmail.com
  */
+ 
 (function (exports) {
 
 exports.openTag = '{';
 exports.closeTag = '}';
 
-exports.statement = function (code) {
+exports.parser = function (code) {
     code = code.replace(/^\s/, '');
     
     var args = code.split(' ');
@@ -18,11 +19,12 @@ exports.statement = function (code) {
     
     if (fuc) {
         args = args.join(' ');
-        return fuc.call(code, args);
+        code = fuc.call(code, args);
     } else {
-        return '=$escape(' + code + ')';
+        code = '=$escape(' + code + ')';
     }
     
+    return code;
 };
 
 
@@ -79,7 +81,7 @@ exports.keywords = {
         return '$each(' + object + ',function(' + args + '){';
     },
     
-    '/each': function () {  
+    '/each': function () {
         return '});';
     },
     
@@ -99,7 +101,7 @@ exports.keywords = {
 };
 
 
-exports.method('$each', function (data, callback) {
+exports.helper('$each', function (data, callback) {
      
     if (_isArray(data)) {
         _forEach.call(data, callback);
@@ -111,16 +113,17 @@ exports.method('$each', function (data, callback) {
     
 });
 
-exports.method('$escape', (function () {
+exports.helper('$escape', (function () {
 
-    var rHtml = /&(?!\w+;)|[<>"']/g;
+    var badChars = /&(?!\w+;)|[<>"']/g;
     var map = {
-        "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
         '"': "&quot;",
-        "'": "&#39;"
+        "'": "&#x27;",
+        "&": "&amp;"
     };
+  
     
     var fn = function (s) {
         return map[s] || s;
@@ -128,13 +131,13 @@ exports.method('$escape', (function () {
     
     return function (content) {
         return typeof content === 'string'
-        ? content.replace(rHtml, fn)
+        ? content.replace(badChars, fn)
         : content;
     };
 
 })());
 
-var _forEach = exports.method('$forEach');
+var _forEach = exports.helper('$forEach');
 var _toString = Object.prototype.toString;
 var _isArray = Array.isArray || function (obj) {
     return _toString.call(obj) === '[object Array]';

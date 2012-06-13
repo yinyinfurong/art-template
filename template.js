@@ -8,15 +8,15 @@
 
 /**
  * 模板引擎路由函数
- * 根据 content 参数类型执行 render 或者 define 方法
+ * 根据 content 参数类型执行 render 或者 compile 方法
  * @name    template
  * @param   {String}            模板ID (可选)
- * @param   {Object, String}    数据或者模板
+ * @param   {Object, String}    数据或者模板字符串
  * @return  {String, Function}  渲染好的HTML字符串或者渲染方法
  */
 var template = function (id, content) {
     return template[
-        typeof content === 'object' ? 'render' : 'define'
+        typeof content === 'object' ? 'render' : 'compile'
     ].apply(template, arguments);
 };
 
@@ -30,7 +30,7 @@ var template = function (id, content) {
 exports.version = '1.0';
 exports.openTag = '<%';
 exports.closeTag = '%>';
-exports.statement = null;
+exports.parser = null;
 
 
 
@@ -61,18 +61,21 @@ exports.render = function (id, data) {
 
 
 /**
- * 定义模板
- * @name    template.define
+ * 编译模板
+ * 2012-6-6:
+ * define 方法名改为 compile,
+ * 与 Node Express.js 保持一致,
+ * 感谢 TooBug 提供帮助!
+ * @name    template.compile
  * @param   {String}    模板ID (可选)
- * @param   {String}    模板
+ * @param   {String}    模板字符串
  * @return  {Function}  渲染方法
  */
-exports.define = function (id, source) {
+exports.compile = function (id, source) {
     
     var debug = arguments[2];
     
     
-    // 忽略id参数
     if (typeof source !== 'string') {
         debug = source;
         source = id;
@@ -82,7 +85,7 @@ exports.define = function (id, source) {
     
     try {
         
-        var cache = exports.compiled(source, debug);
+        var cache = _compile(source, debug);
         
     } catch (e) {
     
@@ -93,17 +96,16 @@ exports.define = function (id, source) {
     }
     
     
-    var render = function (data) {           
+    function render (data) {           
         
         try {
             
-            return cache.call(data, data, _methods); 
+            return cache.call(_helpers, data); 
             
         } catch (e) {
             
-            // 遇错则开启调试模式重新编译并运行
             if (!debug) {
-                return exports.define(id, source, true)(data);
+                return exports.compile(id, source, true)(data);
             }
 			
             e.id = id || source;
@@ -116,9 +118,16 @@ exports.define = function (id, source) {
         
     };
     
+    
+    render.toString = function () {
+        return cache.toString();
+    };
+    
+    
     if (id) {
         _cache[id] = render;
     }
+
     
     return render;
 
@@ -126,19 +135,36 @@ exports.define = function (id, source) {
 
 
 
+
 /**
- * 模板编译器
- * @name    template.compiled
- * @param   {String}    模板
- * @param   {Boolean}   是否开启调试 (默认true)
- * @return  {Function}  编译好的函数 (默认false)
- * @inner
+ * 扩展模板辅助方法
+ * @name    template.helper
+ * @param   {String}    名称
+ * @param   {Function}  方法
  */
-exports.compiled = function (source, debug) {
+exports.helper = function (name, helper) {
+    if (helper === undefined) {
+        return _helpers[name];
+    } else {
+        _helpers[name] = helper;
+    }
+};
+
+
+
+var _cache = {};
+var _helpers = {};
+var _isNewEngine = ''.trim;
+var _isServer = _isNewEngine && !global.document;
+
+
+
+// 模板编译器
+var _compile = function (source, debug) {
 
     var openTag = exports.openTag;
     var closeTag = exports.closeTag;
-    var statement = exports.statement;
+    var parser = exports.parser;
 
     
     var code = source;
@@ -147,7 +173,7 @@ exports.compiled = function (source, debug) {
     var outKey = {};
     var uniq = {$out:true,$line:true};
     
-    var variables = debug ? "var $line=0," : "var ";
+    var variables = "var $helpers=this," + (debug ? "$line=0," : "");
     
     var replaces = _isNewEngine
     ? ["$out='';", "$out+=", ";", "$out"]
@@ -155,7 +181,7 @@ exports.compiled = function (source, debug) {
     
     var include = "function(id,data){"
     +     "if(data===undefined){data=$data}"
-    +     "return $methods.$render(id,data)"
+    +     "return $helpers.$render(id,data)"
     + "}";
     
     
@@ -204,10 +230,10 @@ exports.compiled = function (source, debug) {
     
     try {
 
-        return new Function('$data', '$methods', code);
+        return new Function('$data', code);
         
     } catch (e) {
-        e.temp = 'function anonymous($data,$methods) {' + code + '}';
+        e.temp = 'function anonymous($data) {' + code + '}';
         throw e;
     };
     
@@ -237,10 +263,10 @@ exports.compiled = function (source, debug) {
 
         var thisLine = line;
        
-        if (statement) {
+        if (parser) {
         
-             // 自定义语法转换器
-            code = statement(code);
+             // 语法转换器
+            code = parser(code);
             
         } else if (debug) {
         
@@ -258,7 +284,7 @@ exports.compiled = function (source, debug) {
             
             code = replaces[1]
             + (_isNewEngine ? '$getValue(' : '')
-            + code.substring(1).replace(/^\s+|([;]\s*)$/, '')
+            + code.substring(1).replace(/[\s;]*$/, '')
             + (_isNewEngine ? ')' : '')
             + replaces[2];
 
@@ -283,8 +309,8 @@ exports.compiled = function (source, debug) {
         // 分词
         _forEach.call(code.split(/[^\$\w\d]+/), function (name) {
          
-            // 沙箱规范：禁止通过套嵌函数的 this 关键字获取全局权限
-            if (/^(this|\$methods)$/.test(name)) {
+            // 沙箱强制语法规范：禁止通过套嵌函数的 this 关键字获取全局权限
+            if (/^(this|\$helpers)$/.test(name)) {
                 throw {
                     message: 'Prohibit the use of the "' + name +'"'
                 };
@@ -315,9 +341,9 @@ exports.compiled = function (source, debug) {
         
             value = include;
             
-        } else if (_methods[name]) {
+        } else if (_helpers[name]) {
             
-            value = '$methods.' + name;
+            value = '$helpers.' + name;
             
         } else {
         
@@ -333,39 +359,15 @@ exports.compiled = function (source, debug) {
 
 
 
-/**
- * 添加模板公用方法
- * @name    template.method
- * @param   {String}    名称
- * @param   {Function}  方法
- */
-exports.method = function (name, method) {
-    if (method === undefined) {
-        return _methods[name];
-    } else {
-        _methods[name] = method;
-    }
-};
-
-
-
-var _cache = {};
-var _methods = {};
-var _isNewEngine = ''.trim;
-var _isServer = _isNewEngine && !global.document;
-
-
-
 // 获取模板缓存
 var _getCache = function (id) {
     var cache = _cache[id];
     
-    // 查找页面内嵌模板并编译
     if (cache === undefined && !_isServer) {
         var elem = document.getElementById(id);
         
         if (elem) {
-            exports.define(id, elem.value || elem.innerHTML);
+            exports.compile(id, elem.value || elem.innerHTML);
         }
         
         return _cache[id];
@@ -379,20 +381,26 @@ var _getCache = function (id) {
 // 模板调试器
 var _debug = function (e) {
 
-    var content = '[template]:\n' + e.id
-    + '\n\n[name]:\n' + e.name;
+    var content = '[template]:\n'
+        + e.id
+        + '\n\n[name]:\n'
+        + e.name;
     
     if (e.message) {
-        content += '\n\n[message]:\n' + e.message;
+        content += '\n\n[message]:\n'
+        + e.message;
     }
     
     if (e.line) {
-        content += '\n\n[line]:\n' + e.line;
-        content += '\n\n[source]:\n' + e.source.split(/\n/)[e.line - 1];
+        content += '\n\n[line]:\n'
+        + e.line;
+        content += '\n\n[source]:\n'
+        + e.source.split(/\n/)[e.line - 1].replace(/^[\s\t]+/, '');
     }
     
     if (e.temp) {
-        content += '\n\n[temp]:\n' + e.temp;
+        content += '\n\n[temp]:\n'
+        + e.temp;
     }
     
     if (global.console) {
@@ -440,10 +448,10 @@ _forEach.call((
 
 
 
-// 模板私有方法
-exports.method('$forEach', _forEach);
-exports.method('$render', exports.render);
-exports.method('$getValue', function (value) {
+// 模板私有辅助方法
+exports.helper('$forEach', _forEach);
+exports.helper('$render', exports.render);
+exports.helper('$getValue', function (value) {
     return value === undefined ? '' : value;
 });
 
