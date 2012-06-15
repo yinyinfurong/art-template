@@ -54,28 +54,14 @@ exports.keywords = {
         
         code = code.split(' ');
         
-        var object = code[0];
-        var as = code[1];
-        var value = code[2];
-        var name = code[3];
-        var thisObject = code[4];
-        
-        var args = '';
+        var object = code[0] || '$data';
+        var as = code[1] || 'as';
+        var value = code[2] || '$value';
+        var index = code[3] || '$index';
+        var args = value + ',' + index;
         
         if (as !== 'as') {
             object = '[]';
-        }
-        
-        if (value) {
-            args += value;
-        }
-        
-        if (name) {
-            args += ',' + name;
-        }
-        
-        if (thisObject) {
-            args += ',' + thisObject;
         }
         
         return '$each(' + object + ',function(' + args + '){';
@@ -107,7 +93,7 @@ exports.helper('$each', function (data, callback) {
         _forEach.call(data, callback);
     } else {
         for (var i in data) {
-            callback.call(data, data[i], i, data);
+            callback.call(data, data[i], i);
         }
     }
     
