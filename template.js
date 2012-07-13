@@ -8,7 +8,7 @@
 
 /**
  * 模板引擎路由函数
- * 根据 content 参数类型执行 render 或者 compile 方法
+ * 若第二个参数类型为 Object 则执行 render 方法, 否则 compile 方法
  * @name    template
  * @param   {String}            模板ID (可选)
  * @param   {Object, String}    数据或者模板字符串
@@ -80,7 +80,7 @@ exports.compile = function (id, source) {
         debug = source;
         source = id;
         id = null;
-    }  
+    }
 
     
     try {
@@ -96,11 +96,11 @@ exports.compile = function (id, source) {
     }
     
     
-    function render (data) {           
+    function render (data) {
         
         try {
             
-            return cache.call(_helpers, data); 
+            return cache.call(_helpers, data);
             
         } catch (e) {
             
@@ -137,7 +137,7 @@ exports.compile = function (id, source) {
 
 
 /**
- * 扩展模板辅助方法
+ * 扩展模板公用辅助方法
  * @name    template.helper
  * @param   {String}    名称
  * @param   {Function}  方法
@@ -152,6 +152,7 @@ exports.helper = function (name, helper) {
 
 
 
+
 var _cache = {};
 var _helpers = {};
 var _isNewEngine = ''.trim;
@@ -161,6 +162,7 @@ var _isServer = _isNewEngine && !global.document;
 
 // 模板编译器
 var _compile = function (source, debug) {
+    
 
     var openTag = exports.openTag;
     var closeTag = exports.closeTag;
@@ -230,7 +232,7 @@ var _compile = function (source, debug) {
     
     
     try {
-
+        
         return new Function('$data', code);
         
     } catch (e) {
@@ -313,17 +315,17 @@ var _compile = function (source, debug) {
             // 沙箱强制语法规范：禁止通过套嵌函数的 this 关键字获取全局权限
             if (/^(this|\$helpers)$/.test(name)) {
                 throw {
-                    message: 'Prohibit the use of the "' + name +'"'
+                    message: 'Prohibit the use of the "' + name + '"'
                 };
             }
 			
             // 过滤关键字与数字
-            if (!name || _keyWordsMap[name] || /^\d/.test(name)) {
+            if (!name || _keyWordsMap.hasOwnProperty(name) || /^\d/.test(name)) {
                 return;
             }
             
             // 除重
-            if (!uniq[name]) {
+            if (!uniq.hasOwnProperty(name)) {
                 setValue(name);
                 uniq[name] = true;
             }
@@ -334,7 +336,8 @@ var _compile = function (source, debug) {
     
     
     // 声明模板变量
-    // 赋值优先级: 内置特权方法(include) > 公用模板方法 > 数据
+    // 赋值优先级: 
+    // 内置特权方法(include) > 私有模板辅助方法 > 公用模板辅助方法 > 数据
     function setValue (name) {  
         var value;
 
@@ -342,7 +345,7 @@ var _compile = function (source, debug) {
         
             value = include;
             
-        } else if (_helpers[name]) {
+        } else if (_helpers.hasOwnProperty(name)) {
             
             value = '$helpers.' + name;
             
@@ -362,6 +365,7 @@ var _compile = function (source, debug) {
 
 // 获取模板缓存
 var _getCache = function (id) {
+
     var cache = _cache[id];
     
     if (cache === undefined && !_isServer) {
@@ -372,9 +376,11 @@ var _getCache = function (id) {
         }
         
         return _cache[id];
-    }
+        
+    } else if (_cache.hasOwnProperty(id)) {
     
-    return cache;
+        return cache;
+    }
 };
 
 
