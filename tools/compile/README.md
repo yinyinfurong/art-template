@@ -13,31 +13,48 @@
 示例模板文件夹：``./demo/templates/``
 
 
-## 默认配置
+## 安装与使用
 
-右键可直接编辑 ``compile.cmd`` 的源码修改配置
+###	1. 版本选择：
 
-	// 模板引擎
-	include('../../template.js', 'UTF-8');
+windows批处理版本：``./compile.cmd``
 
-	// 模板引擎自定义语法支持。如果不使用语法插件请注释此行
-	//include('../../extensions/template-syntax.js', 'UTF-8');
+>	在windows下，双击即可运行
 
-	// js格式化工具
-	include('./lib/beautify.js', 'UTF-8');
+NodeJS版本：``./compile.js``
+
+>	基于NodeJS实现，支持跨平台运行
+
+###	2. 设置配置：
+
+右键可直接编辑编译工具的源码修改配置
+
+	// 设置前端模板目录路径
+	var $path = './demo/templates/';
 
 	// 设置待处理的模版编码
 	var $charset = 'UTF-8';
-	
-	// 设置模板存放目录
-	var $path = './demo/templates/';
-	
-	// 设置克隆辅助方法编译方式：
+
+	// 设置辅助方法编译方式：
 	// 为true则克隆到每个编译后的文件中，为false则单独输出到文件
 	var $cloneHelpers = false;
+
+	// 模板引擎路径
+	var template = require('../../template.js');
+
+	// 模板简单语法支持。不使用无请注释此行
+	// require('../../extensions/template-syntax.js');
+
+	// js格式化工具路径
+	var js_beautify = require('./lib/beautify.js');
+	
+### 3. 运行
+
+1.	windows批处理版本可以双击直接运行。拖拽模板到 ``compile.cmd`` 文件上可单独编译当前模板
+2.	NodeJS版本直接调用``node compile.js``即可运行。若附加参数可指定编译单个模板，如``node compile.js demo/templates/index.html``
 	
 
-## include规范
+## 模板include语句规范
 
 ``<%include(path)%>`` 支持动态引入子模板，为了让编译工具能够进行静态分析，需要如下约定：
 
@@ -61,6 +78,5 @@
 
 ============
 
-> 注意：编译工具一个Beta版本，还在不断的完善中，因此不建议在商业项目中使用。在这个完善的过程中期待 NodeJS 爱好者加入打造跨平台版本。
 
 © cdc.tencent.com

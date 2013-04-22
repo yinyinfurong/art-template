@@ -31,6 +31,7 @@ exports.version = '2.0.0';
 exports.openTag = '<%';     // 设置逻辑语法开始标签
 exports.closeTag = '%>';    // 设置逻辑语法结束标签
 exports.isEscape = true;    // HTML字符编码输出开关
+exports.isCompress = false;	// 剔除渲染后HTML多余的空白开关
 exports.parser = null;      // 自定义语法插件接口
 
 
@@ -273,7 +274,7 @@ var _compile = (function () {
     };
 
 
-    var arrayforEach =  Array.prototype.forEach || function (block, thisObject) {
+    var arrayforEach = Array.prototype.forEach || function (block, thisObject) {
         var len = this.length >>> 0;
         
         for (var i = 0; i < len; i++) {
@@ -293,13 +294,15 @@ var _compile = (function () {
 
     var keyWords =
         // 关键字
-        'break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if'
-        + ',in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with'
+        'break,case,catch,continue,debugger,default,delete,do,else,false'
+        + ',finally,for,function,if,in,instanceof,new,null,return,switch,this'
+        + ',throw,true,try,typeof,var,void,while,with'
         
         // 保留字
-        + ',abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto'
-        + ',implements,import,int,interface,long,native,package,private,protected,public,short'
-        + ',static,super,synchronized,throws,transient,volatile'
+        + ',abstract,boolean,byte,char,class,const,double,enum,export,extends'
+        + ',final,float,goto,implements,import,int,interface,long,native'
+        + ',package,private,protected,public,short,static,super,synchronized'
+        + ',throws,transient,volatile'
         
         // ECMA 5 - use strict
         + ',arguments,let,yield'
@@ -326,7 +329,7 @@ var _compile = (function () {
 
 
     // 提取js源码中所有变量
-    var _getVariable = function (code) {
+    var getVariable = function (code) {
 
         code = code
         .replace(filter, ',')
@@ -413,7 +416,8 @@ var _compile = (function () {
         
         
         code = "'use strict';"
-        + variables + replaces[0] + code + 'return new String(' + replaces[3] + ')';
+        + variables + replaces[0] + code
+        + 'return new String(' + replaces[3] + ')';
         
         
         try {
@@ -436,10 +440,14 @@ var _compile = (function () {
             
             // 记录行号
             line += code.split(/\n/).length - 1;
+			
+			if (exports.isCompress) {
+				code = code.replace(/[\n\r\t\s]+/g, ' ');
+			}
             
             code = code
-            // 单双引号与反斜杠转义
-            .replace(/('|"|\\)/g, '\\$1')
+            // 单引号与反斜杠转义(因为编译后的函数默认使用单引号，因此双引号无需转义)
+            .replace(/('|\\)/g, '\\$1')
             // 换行符转义(windows + linux)
             .replace(/\r/g, '\\r')
             .replace(/\n/g, '\\n');
@@ -482,7 +490,10 @@ var _compile = (function () {
 
                     // 转义处理，但排除辅助方法
                     var name = code.replace(/\s*\([^\)]+\)/, '');
-                    if (!helpers.hasOwnProperty(name) && !/^(include|print)$/.test(name)) {
+                    if (
+                        !helpers.hasOwnProperty(name)
+                        && !/^(include|print)$/.test(name)
+                    ) {
                         code = '$escapeHTML($getValue(' + code + '))';
                     }
 
@@ -508,7 +519,7 @@ var _compile = (function () {
         // 提取模板中的变量名
         function getKey (code) {
             
-            code = _getVariable(code);
+            code = getVariable(code);
             
             // 分词
             forEach(code, function (name) {
@@ -551,7 +562,8 @@ var _compile = (function () {
                     if (name.indexOf('$') === 0) {
                         value = '$helpers.' + name;
                     } else {
-                        value = value + '===undefined?$helpers.' + name + ':' + value;
+                        value = value
+                        + '===undefined?$helpers.' + name + ':' + value;
                     }
                 }
                 
@@ -571,6 +583,12 @@ var _compile = (function () {
 })(template, this);
 
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = template;    
+// RequireJS || SeaJS
+if (typeof define === 'function') {
+    define(function(require, exports, module) {
+        module.exports = template; 
+    });
+// NodeJS
+} else if (typeof exports !== 'undefined') {
+    module.exports = template;
 }
