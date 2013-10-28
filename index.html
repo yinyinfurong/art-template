@@ -1,319 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<style>
-body {
-  font-family: Helvetica, arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: white;
-  padding: 30px; }
 
-body > *:first-child {
-  margin-top: 0 !important; }
-body > *:last-child {
-  margin-bottom: 0 !important; }
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Arttemplate : 超快的前端模板引擎" />
 
-a {
-  color: #4183C4; }
-a.absent {
-  color: #cc0000; }
-a.anchor {
-  display: block;
-  padding-left: 30px;
-  margin-left: -30px;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0; }
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 20px 0 10px;
-  padding: 0;
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
-  cursor: text;
-  position: relative; }
+    <title>Arttemplate</title>
+  </head>
 
-h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
-  text-decoration: none; }
+  <body>
 
-h1 tt, h1 code {
-  font-size: inherit; }
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/aui/artTemplate">View on GitHub</a>
 
-h2 tt, h2 code {
-  font-size: inherit; }
+          <h1 id="project_title">Arttemplate</h1>
+          <h2 id="project_tagline">超快的前端模板引擎</h2>
 
-h3 tt, h3 code {
-  font-size: inherit; }
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/aui/artTemplate/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/aui/artTemplate/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-h4 tt, h4 code {
-  font-size: inherit; }
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="arttemplate" class="anchor" href="#arttemplate"><span class="octicon octicon-link"></span></a>artTemplate</h1>
 
-h5 tt, h5 code {
-  font-size: inherit; }
+<h6>
+<a name="%E6%96%B0%E4%B8%80%E4%BB%A3-javascript-%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E" class="anchor" href="#%E6%96%B0%E4%B8%80%E4%BB%A3-javascript-%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E"><span class="octicon octicon-link"></span></a>新一代 javascript 模板引擎</h6>
 
-h6 tt, h6 code {
-  font-size: inherit; }
+<h1></h1>
 
-h1 {
-  font-size: 28px;
-  color: black; }
+<p>artTemplate 是新一代 javascript 模板引擎，它在 v8 中的渲染效率可接近 javascript 性能极限，在 chrome 下渲染效率测试中分别是知名引擎 Mustache 与 micro tmpl 的 25 、 32 倍（<a href="http://aui.github.com/artTemplate/test/test-speed.html">性能测试</a>）。</p>
 
-h2 {
-  font-size: 24px;
-  border-bottom: 1px solid #cccccc;
-  color: black; }
+<p>引擎支持调试。若渲染中遇到错误，调试器可精确定位到产生异常的模板语句，解决前端模板难以调试的问题（<a href="http://aui.github.io/artTemplate/demo/debug.html">详情</a>）。</p>
 
-h3 {
-  font-size: 18px; }
+<p>另外，artTemplate 的模板还支持使用自动化工具预编译，这一切都在 2KB(Gzip) 中实现！</p>
 
-h4 {
-  font-size: 16px; }
+<h2>
+<a name="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B" class="anchor" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="octicon octicon-link"></span></a>快速上手</h2>
 
-h5 {
-  font-size: 14px; }
-
-h6 {
-  color: #777777;
-  font-size: 14px; }
-
-p, blockquote, ul, ol, dl, li, table, pre {
-  margin: 15px 0; }
-
-hr {
-  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
-  border: 0 none;
-  color: #cccccc;
-  height: 4px;
-  padding: 0;
-}
-
-body > h2:first-child {
-  margin-top: 0;
-  padding-top: 0; }
-body > h1:first-child {
-  margin-top: 0;
-  padding-top: 0; }
-  body > h1:first-child + h2 {
-    margin-top: 0;
-    padding-top: 0; }
-body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
-  margin-top: 0;
-  padding-top: 0; }
-
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
-  margin-top: 0;
-  padding-top: 0; }
-
-h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
-  margin-top: 0; }
-
-li p.first {
-  display: inline-block; }
-li {
-  margin: 0; }
-ul, ol {
-  padding-left: 30px; }
-
-ul :first-child, ol :first-child {
-  margin-top: 0; }
-
-dl {
-  padding: 0; }
-  dl dt {
-    font-size: 14px;
-    font-weight: bold;
-    font-style: italic;
-    padding: 0;
-    margin: 15px 0 5px; }
-    dl dt:first-child {
-      padding: 0; }
-    dl dt > :first-child {
-      margin-top: 0; }
-    dl dt > :last-child {
-      margin-bottom: 0; }
-  dl dd {
-    margin: 0 0 15px;
-    padding: 0 15px; }
-    dl dd > :first-child {
-      margin-top: 0; }
-    dl dd > :last-child {
-      margin-bottom: 0; }
-
-blockquote {
-  border-left: 4px solid #dddddd;
-  padding: 0 15px;
-  color: #777777; }
-  blockquote > :first-child {
-    margin-top: 0; }
-  blockquote > :last-child {
-    margin-bottom: 0; }
-
-table {
-  padding: 0;border-collapse: collapse; }
-  table tr {
-    border-top: 1px solid #cccccc;
-    background-color: white;
-    margin: 0;
-    padding: 0; }
-    table tr:nth-child(2n) {
-      background-color: #f8f8f8; }
-    table tr th {
-      font-weight: bold;
-      border: 1px solid #cccccc;
-      text-align: left;
-      margin: 0;
-      padding: 6px 13px; }
-    table tr td {
-      border: 1px solid #cccccc;
-      text-align: left;
-      margin: 0;
-      padding: 6px 13px; }
-    table tr th :first-child, table tr td :first-child {
-      margin-top: 0; }
-    table tr th :last-child, table tr td :last-child {
-      margin-bottom: 0; }
-
-img {
-  max-width: 100%; }
-
-span.frame {
-  display: block;
-  overflow: hidden; }
-  span.frame > span {
-    border: 1px solid #dddddd;
-    display: block;
-    float: left;
-    overflow: hidden;
-    margin: 13px 0 0;
-    padding: 7px;
-    width: auto; }
-  span.frame span img {
-    display: block;
-    float: left; }
-  span.frame span span {
-    clear: both;
-    color: #333333;
-    display: block;
-    padding: 5px 0 0; }
-span.align-center {
-  display: block;
-  overflow: hidden;
-  clear: both; }
-  span.align-center > span {
-    display: block;
-    overflow: hidden;
-    margin: 13px auto 0;
-    text-align: center; }
-  span.align-center span img {
-    margin: 0 auto;
-    text-align: center; }
-span.align-right {
-  display: block;
-  overflow: hidden;
-  clear: both; }
-  span.align-right > span {
-    display: block;
-    overflow: hidden;
-    margin: 13px 0 0;
-    text-align: right; }
-  span.align-right span img {
-    margin: 0;
-    text-align: right; }
-span.float-left {
-  display: block;
-  margin-right: 13px;
-  overflow: hidden;
-  float: left; }
-  span.float-left span {
-    margin: 13px 0 0; }
-span.float-right {
-  display: block;
-  margin-left: 13px;
-  overflow: hidden;
-  float: right; }
-  span.float-right > span {
-    display: block;
-    overflow: hidden;
-    margin: 13px auto 0;
-    text-align: right; }
-
-code, tt {
-  margin: 0 2px;
-  padding: 0 5px;
-  white-space: nowrap;
-  border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
-  border-radius: 3px; }
-
-pre code {
-  margin: 0;
-  padding: 0;
-  white-space: pre;
-  border: none;
-  background: transparent; }
-
-.highlight pre {
-  background-color: #f8f8f8;
-  border: 1px solid #cccccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px; }
-
-pre {
-  background-color: #f8f8f8;
-  border: 1px solid #cccccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px; }
-  pre code, pre tt {
-    background-color: transparent;
-    border: none; }
-
-@media screen and (min-width: 914px) {
-    body {
-        width: 854px;
-        margin:0 auto;
-    }
-}
-@media print {
-	table, pre {
-		page-break-inside: avoid;
-	}
-}
-</style>
-<title>artTemplate</title>
-
-</head>
-<body>
-<h1>artTemplate</h1>
-
-<h6>新一代 javascript 模板引擎</h6>
-
-<hr />
-
-<p>artTemplate 是新一代 javascript 模板引擎，它在 v8 中的渲染效率可接近 javascript 性能极限，在 chrome 下渲染效率测试中分别是知名引擎 Mustache 与 micro tmpl 的 25 、 32 倍。</p>
-
-<p>引擎支持调试。若渲染中遇到错误，调试器可精确定位到产生异常的模板语句，解决前端模板难以调试的问题。</p>
-
-<p>独有<a href="http://aui.github.com/artTemplate/tools/compile/">模板编译工具</a>，它能把前端模板编译成不依赖模板引擎运行的JS文件，让前端模板可以突破浏览器的限制，实现像后端模板一样按文件与目录的方式组织、按需加载、<code>include</code>嵌套等。</p>
-
-<p>这一切都在 2kb(gzip) 中实现！</p>
-
-<h2>快速上手</h2>
-
-<h3>编写模板</h3>
+<h3>
+<a name="%E7%BC%96%E5%86%99%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E7%BC%96%E5%86%99%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>编写模板</h3>
 
 <p>使用一个<code>type="text/html"</code>的<code>script</code>标签存放模板：</p>
 
@@ -329,7 +65,8 @@ pre {
 
 <p>模板逻辑语法开始与结束的界定符号为<code>&lt;%</code> 与<code>%&gt;</code>，若<code>&lt;%</code>后面紧跟<code>=</code>号则输出变量内容。</p>
 
-<h3>渲染模板</h3>
+<h3>
+<a name="%E6%B8%B2%E6%9F%93%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E6%B8%B2%E6%9F%93%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>渲染模板</h3>
 
 <p><code>template.render(id, data)</code></p>
 
@@ -343,7 +80,8 @@ document.getElementById('content').innerHTML = html;
 
 <p><a href="http://aui.github.com/artTemplate/demo/basic.html">演示</a></p>
 
-<h2>嵌入子模板</h2>
+<h2>
+<a name="%E5%B5%8C%E5%85%A5%E5%AD%90%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E5%B5%8C%E5%85%A5%E5%AD%90%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>嵌入子模板</h2>
 
 <p><code>&lt;%include(id, [data])%&gt;</code>语句可以嵌入子模板，其中第二个参数是可选的，它默认传入当前的数据。</p>
 
@@ -363,9 +101,10 @@ document.getElementById('content').innerHTML = html;
 
 <p><a href="http://aui.github.com/artTemplate/demo/include.html">演示</a></p>
 
-<h2>不转义HTML</h2>
+<h2>
+<a name="%E4%B8%8D%E8%BD%AC%E4%B9%89html" class="anchor" href="#%E4%B8%8D%E8%BD%AC%E4%B9%89html"><span class="octicon octicon-link"></span></a>不转义HTML</h2>
 
-<p>模板引擎默认数据包含的 HTML 字符进行转义以避免 XSS 漏洞，若不需要转义的地方可使用两个<code>=</code>号。</p>
+<p>模板引擎默认数据包含的 HTML 字符进行转义以避免 XSS 漏洞，若不需要转义的地方可使用<code>==</code>。</p>
 
 <pre><code>&lt;script id="test" type="text/html"&gt;
 &lt;%==value%&gt;
@@ -376,7 +115,8 @@ document.getElementById('content').innerHTML = html;
 
 <p><a href="http://aui.github.com/artTemplate/demo/no-escape.html">演示</a></p>
 
-<h2>在js中存放模板</h2>
+<h2>
+<a name="%E5%9C%A8js%E4%B8%AD%E5%AD%98%E6%94%BE%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E5%9C%A8js%E4%B8%AD%E5%AD%98%E6%94%BE%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>在js中存放模板</h2>
 
 <p><code>template.compile([id], source)</code>将返回一个渲染函数。其中 id 参数是可选的，如果使用了 id 参数，可以使用<code>template.render(id, data)</code>渲染模板。</p>
 
@@ -398,9 +138,10 @@ document.getElementById('content').innerHTML = html;
 
 <p><a href="http://aui.github.com/artTemplate/demo/compile.html">演示</a></p>
 
-<h2>添加辅助方法</h2>
+<h2>
+<a name="%E6%B7%BB%E5%8A%A0%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95" class="anchor" href="#%E6%B7%BB%E5%8A%A0%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95"><span class="octicon octicon-link"></span></a>添加辅助方法</h2>
 
-<p><code>template.helper(name, callback)</code>辅助方法一般用来进行字符串替换，如 XSS 过滤、UBB 替换、脏话替换等。</p>
+<p><code>template.helper(name, callback)</code>辅助方法一般用来进行字符串替换，如 UBB 替换、脏话替换等。</p>
 
 <p>例如扩展一个UBB替换方法：</p>
 
@@ -423,7 +164,8 @@ document.getElementById('content').innerHTML = html;
 
 <p><a href="http://aui.github.com/artTemplate/demo/helper.html">演示</a></p>
 
-<h2>设置界定符</h2>
+<h2>
+<a name="%E8%AE%BE%E7%BD%AE%E7%95%8C%E5%AE%9A%E7%AC%A6" class="anchor" href="#%E8%AE%BE%E7%BD%AE%E7%95%8C%E5%AE%9A%E7%AC%A6"><span class="octicon octicon-link"></span></a>设置界定符</h2>
 
 <p>若前端模板语法与后端语法产生冲突，可以修改模板引擎界定符，例如：</p>
 
@@ -433,100 +175,134 @@ template.closeTag = "]--&gt;";
 
 <p><a href="http://aui.github.com/artTemplate/demo/tag.html">演示</a></p>
 
-<h2>自定义语法</h2>
+<h2>
+<a name="%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95" class="anchor" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95"><span class="octicon octicon-link"></span></a>自定义语法</h2>
 
 <p>artTemplate 提供一个语法扩展用来简化模板逻辑语法。语法示例：</p>
 
-<pre><code>{if admin}
-    &lt;h3&gt;{title}&lt;/h3&gt;
+<pre><code>{{if admin}}
+    &lt;h3&gt;{{title}}&lt;/h3&gt;
     &lt;ul&gt;
-        {each list}
-            &lt;li&gt;{$index + 1}: {$value}&lt;/li&gt;
-        {/each}
+        {{each list}}
+            &lt;li&gt;{{$index + 1}}: {{$value}}&lt;/li&gt;
+        {{/each}}
     &lt;/ul&gt;
-{/if}
+{{/if}}
 </code></pre>
 
-<p><a href="http://aui.github.com/artTemplate/extensions/index.html">详情</a></p>
+<p><a href="https://github.com/aui/artTemplate/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95%E6%89%A9%E5%B1%95%E8%AF%B4%E6%98%8E">使用帮助</a></p>
 
-<h2>自动化工具</h2>
+<h2>
+<a name="%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7" class="anchor" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="octicon octicon-link"></span></a>自动化工具</h2>
 
-<h3>编译工具</h3>
+<h3>
+<a name="%E9%A2%84%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7" class="anchor" href="#%E9%A2%84%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7"><span class="octicon octicon-link"></span></a>预编译工具</h3>
 
-<p><code>./tools/compile</code></p>
+<p>使用它可以让前端模版不再受浏览器的限制，支持如后端模版一样按文件放置、include 语句等特性，可以像后端一样书写前端模板！</p>
 
-<p>可把模版编译成不依赖模版引擎的js文件，这样前端模版也可以向后端模版一样按文件放置，并且支持include等语句。</p>
+<p>编译后的模板不再依赖前端模板引擎与后端，模板可以通过 <a href="http://seajs.org">SeaJS</a> 或 <a href="http://requirejs.org">RequireJS</a> 等加载器进行异步加载，亦能利用它们成熟的打包合并工具进行上线前的优化，如合并与压缩。</p>
 
-<p>编译后的模板可以通过RequireJS、SeaJS等加载器进行异步加载，亦能利用它们成熟的打包合并工具进行上线前优化。</p>
+<p>项目主页：<a href="https://github.com/aui/tmodjs">https://github.com/aui/tmodjs</a></p>
 
-<h3>抽取工具</h3>
+<h3>
+<a name="%E6%8A%BD%E5%8F%96%E5%B7%A5%E5%85%B7" class="anchor" href="#%E6%8A%BD%E5%8F%96%E5%B7%A5%E5%85%B7"><span class="octicon octicon-link"></span></a>抽取工具</h3>
 
-<p><code>./tools/combine/</code></p>
+<p><a href="http://aui.github.com/artTemplate/tools/combine.html">./tools/combine.html</a></p>
 
 <p>可以把 HTML 中的模板提取出来以便把模板嵌入到 js 文件中。</p>
 
 <p>与编译工具不同的是，抽取后的模板仍然依赖引擎运行。</p>
 
-<h2>模板编码规范</h2>
+<h2>
+<a name="%E6%A8%A1%E6%9D%BF%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83" class="anchor" href="#%E6%A8%A1%E6%9D%BF%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83"><span class="octicon octicon-link"></span></a>模板编码规范</h2>
 
 <p>1、不能使用 javascript 关键字作为模板变量(包括 ECMA5 严格模式下新增的关键字):</p>
 
-<blockquote><p>break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with, abstract, boolean, byte, char, class, const, double, enum, export, extends, final, float, goto, implements, import, int, interface, long, native, package, private, protected, public, short, static, super, synchronized, throws, transient, volatile, arguments, let, yield</p></blockquote>
+<blockquote>
+<p>break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with, abstract, boolean, byte, char, class, const, double, enum, export, extends, final, float, goto, implements, import, int, interface, long, native, package, private, protected, public, short, static, super, synchronized, throws, transient, volatile, arguments, let, yield</p>
+</blockquote>
 
-<p>2、模板禁止读写全局变量，除非给模板定义辅助方法。例如：</p>
+<p>2、模板运行在沙箱中，内部无法访问外部变量，除非给模板定义辅助方法。例如：</p>
 
 <pre><code>template.helper('Math', Math)
 </code></pre>
 
-<blockquote><p>artTemplate编译后的模板将运行在沙箱内，模板语句无法读写外部对象。</p>
+<blockquote>
+<p>模板中若任意引用外部对象，复杂的依赖管理将会让项目难以维护，这种方式将利于后续模板迁移（包括通过工具预编译）。</p>
+</blockquote>
 
-<p>在使用原生语法的引擎中，模板中若引用外部对象，随着项目复杂度增加，那时候谁都不能确定模板中的变量到底是数据还是全局对象，这种复杂的依赖关系将为会项目带来巨大的维护成本。</p></blockquote>
+<h2>
+<a name="%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95" class="anchor" href="#%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95"><span class="octicon octicon-link"></span></a>更新记录</h2>
 
-<h2>更新记录</h2>
-
-<h3>v2.0 release</h3>
-
-<ol>
-<li>编译工具增加NodeJS跨平台版本。感谢 @toobug</li>
-<li>增加<code>RequireJS</code>加载编译后的模板的示例</li>
-</ol>
-
-
-<h3>v2.0 beta5</h3>
+<h3>
+<a name="v202" class="anchor" href="#v202"><span class="octicon octicon-link"></span></a>v2.0.2</h3>
 
 <ol>
-<li>修复编译工具可能存在重复依赖的问题。感谢 @warmhug</li>
-<li>修复<code>include</code>内部实现可能产生上下文不一致的问题。感谢 @warmhug</li>
+<li> 优化自定义语法扩展，减少体积</li>
+<li> [重要]为了最大化兼容第三方库，自定义语法扩展默认界定符修改为<code>{{</code>与<code>}}</code>。</li>
+<li> 修复合并工具的BUG <a href="https://github.com/aui/artTemplate/issues/25">#25</a>
+</li>
+<li> 公开了内部缓存，可以通过<code>template.cache</code>访问到编译后的函数</li>
+<li> 公开了辅助方法缓存，可以通过<code>template.helpers</code>访问到</li>
+<li> 优化了调试信息</li>
+</ol><h3>
+<a name="v201" class="anchor" href="#v201"><span class="octicon octicon-link"></span></a>v2.0.1</h3>
+
+<ol>
+<li> 修复模板变量静态分析的<a href="https://github.com/aui/artTemplate/pull/22">BUG</a>
+</li>
+</ol><h3>
+<a name="v20-release" class="anchor" href="#v20-release"><span class="octicon octicon-link"></span></a>v2.0 release</h3>
+
+<ol>
+<li> 编译工具更名为 atc，成为 artTemplate 的子项目单独维护：<a href="https://github.com/cdc-im/atc">https://github.com/cdc-im/atc</a>
+</li>
+</ol><h3>
+<a name="v20-beta5" class="anchor" href="#v20-beta5"><span class="octicon octicon-link"></span></a>v2.0 beta5</h3>
+
+<ol>
+<li>修复编译工具可能存在重复依赖的问题。感谢 <a href="https://github.com/warmhug" class="user-mention">@warmhug</a>
+</li>
+<li>修复<code>include</code>内部实现可能产生上下文不一致的问题。感谢 <a href="https://github.com/warmhug" class="user-mention">@warmhug</a>
+</li>
 <li>支持使用拖拽文件到<code>compile.cmd</code>图标上进行单独编译</li>
-</ol>
-
-
-<h3>v2.0 beta4</h3>
+</ol><h3>
+<a name="v20-beta4" class="anchor" href="#v20-beta4"><span class="octicon octicon-link"></span></a>v2.0 beta4</h3>
 
 <ol>
-<li>修复编译工具在压缩模板可能导致 HTML 意外截断的问题。感谢 @warmhug</li>
+<li>修复编译工具在压缩模板可能导致 HTML 意外截断的问题。感谢 <a href="https://github.com/warmhug" class="user-mention">@warmhug</a>
+</li>
 <li>完善编译工具对<code>include</code>支持支持，可以支持不同目录之间模板嵌套</li>
 <li>修复编译工具没能正确处理自定义语法插件的辅助方法</li>
-</ol>
-
-
-<h3>v2.0 beta1</h3>
+</ol><h3>
+<a name="v20-beta1" class="anchor" href="#v20-beta1"><span class="octicon octicon-link"></span></a>v2.0 beta1</h3>
 
 <ol>
-<li>对非String、Number类型的数据不输出，而Function类型求值后输出。</li>
-<li>默认对html进行转义输出，原文输出可使用<code>&lt;%==value%&gt;</code>，也可以关闭默认的转义功能<code>template.isEscape = false</code>。</li>
-<li>增加批处理工具支持把模板编译成不依赖模板引擎的 js 文件，可通过 RequireJS、SeaJS 等模块加载器进行异步加载。</li>
-</ol>
-
-
-<h2>授权协议</h2>
+<li> 对非String、Number类型的数据不输出，而Function类型求值后输出。</li>
+<li> 默认对html进行转义输出，原文输出可使用<code>&lt;%==value%&gt;</code>，也可以关闭默认的转义功能<code>template.isEscape = false</code>。</li>
+<li> 增加批处理工具支持把模板编译成不依赖模板引擎的 js 文件，可通过 RequireJS、SeaJS 等模块加载器进行异步加载。</li>
+</ol><h2>
+<a name="%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE" class="anchor" href="#%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE"><span class="octicon octicon-link"></span></a>授权协议</h2>
 
 <p>Released under the MIT, BSD, and GPL Licenses</p>
 
-<hr />
+<h1></h1>
 
-<p><a href="http://aui.github.com/artTemplate/demo/index.html">演示例子</a> | <a href="http://aui.github.com/artTemplate/test/test-speed.html">性能测试</a> | <a href="http://cdc.tencent.com/?p=5723">引擎原理</a></p>
+<p><a href="http://aui.github.com/artTemplate/demo/index.html">所有演示例子</a> | <a href="http://cdc.tencent.com/?p=5723">引擎原理</a></p>
 
 <p>© cdc.tencent.com</p>
-</body>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Arttemplate maintained by <a href="https://github.com/aui">aui</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
 </html>
