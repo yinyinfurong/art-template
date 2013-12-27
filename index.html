@@ -37,16 +37,22 @@
 <h6>
 <a name="%E6%96%B0%E4%B8%80%E4%BB%A3-javascript-%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E" class="anchor" href="#%E6%96%B0%E4%B8%80%E4%BB%A3-javascript-%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E"><span class="octicon octicon-link"></span></a>新一代 javascript 模板引擎</h6>
 
-<h1></h1>
-
 <p>artTemplate 是新一代 javascript 模板引擎，它在 v8 中的渲染效率可接近 javascript 性能极限，在 chrome 下渲染效率测试中分别是知名引擎 Mustache 与 micro tmpl 的 25 、 32 倍（<a href="http://aui.github.com/artTemplate/test/test-speed.html">性能测试</a>）。</p>
 
 <p>引擎支持调试。若渲染中遇到错误，调试器可精确定位到产生异常的模板语句，解决前端模板难以调试的问题（<a href="http://aui.github.io/artTemplate/demo/debug.html">详情</a>）。</p>
 
-<p>另外，artTemplate 的模板还支持使用自动化工具预编译，这一切都在 2KB(Gzip) 中实现！</p>
+<p>另外，artTemplate 的模板还支持使用自动化工具预编译，支持将模板转换为 js 文件。</p>
 
 <h2>
 <a name="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B" class="anchor" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="octicon octicon-link"></span></a>快速上手</h2>
+
+<h3>
+<a name="%E5%BC%95%E7%94%A8%E5%BC%95%E6%93%8E" class="anchor" href="#%E5%BC%95%E7%94%A8%E5%BC%95%E6%93%8E"><span class="octicon octicon-link"></span></a>引用引擎</h3>
+
+<pre><code>&lt;script src="dist/template.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>直接下载 <a href="https://raw.github.com/aui/artTemplate/master/dist/template.js">template.js</a></p>
 
 <h3>
 <a name="%E7%BC%96%E5%86%99%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E7%BC%96%E5%86%99%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>编写模板</h3>
@@ -178,7 +184,7 @@ template.closeTag = "]--&gt;";
 <h2>
 <a name="%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95" class="anchor" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95"><span class="octicon octicon-link"></span></a>自定义语法</h2>
 
-<p>artTemplate 提供一个语法扩展用来简化模板逻辑语法。语法示例：</p>
+<p>artTemplate 提供一个语法扩展用来简化模板逻辑语法。简洁语法示例：</p>
 
 <pre><code>{{if admin}}
     &lt;h3&gt;{{title}}&lt;/h3&gt;
@@ -190,9 +196,26 @@ template.closeTag = "]--&gt;";
 {{/if}}
 </code></pre>
 
-<p>安装：把 extensions/template-syntax.js 合并到 template.js 底部。</p>
+<p>请引用 dist/<a href="https://raw.github.com/aui/artTemplate/master/dist/template-simple.js">template-simple.js</a> 即可使用简洁语法。</p>
 
-<p><a href="https://github.com/aui/artTemplate/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95%E6%89%A9%E5%B1%95%E8%AF%B4%E6%98%8E">更多语法说明</a></p>
+<p><a href="https://github.com/aui/artTemplate/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95%E6%89%A9%E5%B1%95%E8%AF%B4%E6%98%8E">完整简洁语法说明</a></p>
+
+<h2>
+<a name="nodejs" class="anchor" href="#nodejs"><span class="octicon octicon-link"></span></a>NodeJS</h2>
+
+<h3>
+<a name="%E5%AE%89%E8%A3%85" class="anchor" href="#%E5%AE%89%E8%A3%85"><span class="octicon octicon-link"></span></a>安装</h3>
+
+<pre><code>$ npm install art-template -g
+</code></pre>
+
+<h3>
+<a name="%E4%BD%BF%E7%94%A8" class="anchor" href="#%E4%BD%BF%E7%94%A8"><span class="octicon octicon-link"></span></a>使用</h3>
+
+<pre><code>var template = require('art-template');
+</code></pre>
+
+<p>（简洁语法版请 <code>require('art-template/dist/template-simple')</code>）</p>
 
 <h2>
 <a name="%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7" class="anchor" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="octicon octicon-link"></span></a>自动化工具</h2>
@@ -201,8 +224,6 @@ template.closeTag = "]--&gt;";
 <a name="%E9%A2%84%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7" class="anchor" href="#%E9%A2%84%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7"><span class="octicon octicon-link"></span></a>预编译工具</h3>
 
 <p>使用它可以让前端模版不再受浏览器的限制，支持如后端模版一样按文件放置、include 语句等特性，可以像后端一样书写前端模板！</p>
-
-<p>编译后的模板不再依赖前端模板引擎与后端，模板可以通过 <a href="http://seajs.org">SeaJS</a> 或 <a href="http://requirejs.org">RequireJS</a> 等加载器进行异步加载，亦能利用它们成熟的打包合并工具进行上线前的优化，如合并与压缩。</p>
 
 <p>项目主页：<a href="https://github.com/aui/tmodjs">https://github.com/aui/tmodjs</a></p>
 
@@ -237,6 +258,12 @@ template.closeTag = "]--&gt;";
 <a name="%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95" class="anchor" href="#%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95"><span class="octicon octicon-link"></span></a>更新记录</h2>
 
 <h3>
+<a name="v203" class="anchor" href="#v203"><span class="octicon octicon-link"></span></a>v2.0.3</h3>
+
+<ol>
+<li> 优化辅助方法性能</li>
+<li> NodeJS 版本使用 npm 管理</li>
+</ol><h3>
 <a name="v202" class="anchor" href="#v202"><span class="octicon octicon-link"></span></a>v2.0.2</h3>
 
 <ol>
