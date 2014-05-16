@@ -9,16 +9,16 @@
 <body>
 <div id="content"></div>
 <script id="test" type="text/html">
-<% if (isAdmin) { %>
+{{if isAdmin}}
 
-<h1><%=title%></h1>
+<h1>{{title}}</h1>
 <ul>
-    <% for (var i = 0; i < list.length; i ++) { %>
-        <li>索引 <%= i + 1 %> ：<%= list[i] %></li>
-    <% } %>
+    {{each list as value i}}
+        <li>索引 {{i + 1}} ：{{value}}</li>
+    {{/each}}
 </ul>
 
-<% } %>
+{{/if}}
 </script>
 
 <script>
@@ -27,7 +27,7 @@ var data = {
 	isAdmin: true,
 	list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
 };
-var html = template.render('test', data);
+var html = template('test', data);
 document.getElementById('content').innerHTML = html;
 </script>
 </body>

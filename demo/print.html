@@ -9,11 +9,7 @@
 <body>
 <h1>print</h1>
 <script id="test" type="text/html">
-<%
-if (list) {
-	print('hello world');
-}
-%>
+{{print a b c}}
 </script>
 
 <script>
@@ -21,16 +17,12 @@ var html = '';
 
 
 var data = {
-	list: [{
-        type: 'art',
-        content: '让心灵回归'
-    }, {
-        type: 'music',
-        content: '天籁之音'
-    }]
+	a: 'hello',
+	b: '--world',
+	c: '--!!!'
 };
 
-html = template.render('test', data);
+html = template('test', data);
 document.write(html);
 </script>
 </body>
