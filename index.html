@@ -1,58 +1,77 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Arttemplate : 超快的前端模板引擎" />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Arttemplate</title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Arttemplate by aui</title>
   </head>
 
   <body>
+    <div id="container">
+      <div class="inner">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/aui/artTemplate">View on GitHub</a>
-
-          <h1 id="project_title">Arttemplate</h1>
-          <h2 id="project_tagline">超快的前端模板引擎</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/aui/artTemplate/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/aui/artTemplate/tarball/master">Download this project as a tar.gz file</a>
-            </section>
+        <header>
+          <h1>Arttemplate</h1>
+          <h2>超快的前端模板引擎</h2>
         </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="arttemplate" class="anchor" href="#arttemplate"><span class="octicon octicon-link"></span></a>artTemplate</h1>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/aui/artTemplate/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/aui/artTemplate/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/aui/artTemplate" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
-<h6>
-<a name="%E6%96%B0%E4%B8%80%E4%BB%A3-javascript-%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E" class="anchor" href="#%E6%96%B0%E4%B8%80%E4%BB%A3-javascript-%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E"><span class="octicon octicon-link"></span></a>新一代 javascript 模板引擎</h6>
+        <hr>
 
-<p>artTemplate 是新一代 javascript 模板引擎，它在 v8 中的渲染效率可接近 javascript 性能极限，在 chrome 下渲染效率测试中分别是知名引擎 Mustache 与 micro tmpl 的 25 、 32 倍（<a href="http://aui.github.com/artTemplate/test/test-speed.html">性能测试</a>）。</p>
+        <section id="main_content">
+          <h1>
+<a name="arttemplate-30" class="anchor" href="#arttemplate-30"><span class="octicon octicon-link"></span></a>artTemplate-3.0</h1>
 
-<p>引擎支持调试。若渲染中遇到错误，调试器可精确定位到产生异常的模板语句，解决前端模板难以调试的问题（<a href="http://aui.github.io/artTemplate/demo/debug.html">详情</a>）。</p>
-
-<p>另外，artTemplate 的模板还支持使用自动化工具预编译，支持将模板转换为 js 文件。</p>
+<p>新一代 javascript 模板引擎</p>
 
 <h2>
+<a name="%E7%9B%AE%E5%BD%95" class="anchor" href="#%E7%9B%AE%E5%BD%95"><span class="octicon octicon-link"></span></a>目录</h2>
+
+<ul>
+<li>  <a href="#%E7%89%B9%E6%80%A7">特性</a>
+</li>
+<li>  <a href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B">快速上手</a>
+</li>
+<li>  <a href="#%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95">模板语法</a>
+</li>
+<li>  <a href="#%E4%B8%8B%E8%BD%BD">下载</a>
+</li>
+<li>  <a href="#%E6%96%B9%E6%B3%95">方法</a>
+</li>
+<li>  <a href="#nodejs">NodeJS</a>
+</li>
+<li>  <a href="#%E4%BD%BF%E7%94%A8%E9%A2%84%E7%BC%96%E8%AF%91">使用预编译</a>
+</li>
+<li>  <a href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97">更新日志</a>
+</li>
+<li>  <a href="#%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE">授权协议</a>
+</li>
+</ul><h2>
+<a name="%E7%89%B9%E6%80%A7" class="anchor" href="#%E7%89%B9%E6%80%A7"><span class="octicon octicon-link"></span></a>特性</h2>
+
+<ol>
+<li> 性能卓越，执行速度通常是 Mustache 与 tmpl 的 20 多倍（<a href="http://aui.github.com/artTemplate/test/test-speed.html">性能测试</a>）</li>
+<li> 支持运行时调试，可精确定位异常模板所在语句（<a href="http://aui.github.io/artTemplate/demo/debug.html">演示</a>）</li>
+<li> 对 NodeJS Express 友好支持</li>
+<li> 安全，默认对输出进行转义、在沙箱中运行编译后的代码（Node版本可以安全执行用户上传的模板）</li>
+<li> 支持<code>include</code>语句，可在浏览器端实现按路径加载模板</li>
+<li> 支持预编译，可将模板转换成为非常精简的 js 文件</li>
+<li> 模板语句简洁，无需前缀引用数据</li>
+<li> 支持所有流行的浏览器</li>
+</ol><h2>
 <a name="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B" class="anchor" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="octicon octicon-link"></span></a>快速上手</h2>
-
-<h3>
-<a name="%E5%BC%95%E7%94%A8%E5%BC%95%E6%93%8E" class="anchor" href="#%E5%BC%95%E7%94%A8%E5%BC%95%E6%93%8E"><span class="octicon octicon-link"></span></a>引用引擎</h3>
-
-<pre><code>&lt;script src="dist/template.js"&gt;&lt;/script&gt;
-</code></pre>
-
-<p>直接下载 <a href="https://raw.github.com/aui/artTemplate/master/dist/template.js">template.js</a></p>
 
 <h3>
 <a name="%E7%BC%96%E5%86%99%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E7%BC%96%E5%86%99%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>编写模板</h3>
@@ -60,145 +79,169 @@
 <p>使用一个<code>type="text/html"</code>的<code>script</code>标签存放模板：</p>
 
 <pre><code>&lt;script id="test" type="text/html"&gt;
-&lt;h1&gt;&lt;%=title%&gt;&lt;/h1&gt;
+&lt;h1&gt;{{title}}&lt;/h1&gt;
 &lt;ul&gt;
-    &lt;%for(i = 0; i &lt; list.length; i ++) {%&gt;
-        &lt;li&gt;条目内容 &lt;%=i + 1%&gt; ：&lt;%=list[i]%&gt;&lt;/li&gt;
-    &lt;%}%&gt;
+    {{each list as value i}}
+        &lt;li&gt;索引 {{i + 1}} ：{{value}}&lt;/li&gt;
+    {{/each}}
 &lt;/ul&gt;
 &lt;/script&gt;
 </code></pre>
 
-<p>模板逻辑语法开始与结束的界定符号为<code>&lt;%</code> 与<code>%&gt;</code>，若<code>&lt;%</code>后面紧跟<code>=</code>号则输出变量内容。</p>
-
 <h3>
 <a name="%E6%B8%B2%E6%9F%93%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E6%B8%B2%E6%9F%93%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>渲染模板</h3>
-
-<p><code>template.render(id, data)</code></p>
 
 <pre><code>var data = {
     title: '标签',
     list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
 };
-var html = template.render('test', data);
+var html = template('test', data);
 document.getElementById('content').innerHTML = html;
 </code></pre>
 
 <p><a href="http://aui.github.com/artTemplate/demo/basic.html">演示</a></p>
 
 <h2>
-<a name="%E5%B5%8C%E5%85%A5%E5%AD%90%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E5%B5%8C%E5%85%A5%E5%AD%90%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>嵌入子模板</h2>
+<a name="%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95" class="anchor" href="#%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95"><span class="octicon octicon-link"></span></a>模板语法</h2>
 
-<p><code>&lt;%include(id, [data])%&gt;</code>语句可以嵌入子模板，其中第二个参数是可选的，它默认传入当前的数据。</p>
+<p>有两个版本的模板语法可以选择。</p>
 
-<pre><code>&lt;script id="test" type="text/html"&gt;
-&lt;h1&gt;&lt;%=title%&gt;&lt;/h1&gt;
-&lt;%include('list')%&gt;
-&lt;/script&gt;
+<h3>
+<a name="%E7%AE%80%E6%B4%81%E8%AF%AD%E6%B3%95" class="anchor" href="#%E7%AE%80%E6%B4%81%E8%AF%AD%E6%B3%95"><span class="octicon octicon-link"></span></a>简洁语法</h3>
 
-&lt;script id="list" type="text/html"&gt;
-&lt;ul&gt;
-    &lt;%for(i = 0; i &lt; list.length; i ++) {%&gt;
-        &lt;li&gt;条目内容 &lt;%=i + 1%&gt; ：&lt;%=list[i]%&gt;&lt;/li&gt;
-    &lt;%}%&gt;
-&lt;/ul&gt;
-&lt;/script&gt;
-</code></pre>
-
-<p><a href="http://aui.github.com/artTemplate/demo/include.html">演示</a></p>
-
-<h2>
-<a name="%E4%B8%8D%E8%BD%AC%E4%B9%89html" class="anchor" href="#%E4%B8%8D%E8%BD%AC%E4%B9%89html"><span class="octicon octicon-link"></span></a>不转义HTML</h2>
-
-<p>模板引擎默认数据包含的 HTML 字符进行转义以避免 XSS 漏洞，若不需要转义的地方可使用<code>==</code>。</p>
-
-<pre><code>&lt;script id="test" type="text/html"&gt;
-&lt;%==value%&gt;
-&lt;/script&gt;
-</code></pre>
-
-<p>若需要关闭默认转义，可以设置<code>template.isEscape = false</code>。</p>
-
-<p><a href="http://aui.github.com/artTemplate/demo/no-escape.html">演示</a></p>
-
-<h2>
-<a name="%E5%9C%A8js%E4%B8%AD%E5%AD%98%E6%94%BE%E6%A8%A1%E6%9D%BF" class="anchor" href="#%E5%9C%A8js%E4%B8%AD%E5%AD%98%E6%94%BE%E6%A8%A1%E6%9D%BF"><span class="octicon octicon-link"></span></a>在js中存放模板</h2>
-
-<p><code>template.compile([id], source)</code>将返回一个渲染函数。其中 id 参数是可选的，如果使用了 id 参数，可以使用<code>template.render(id, data)</code>渲染模板。</p>
-
-<pre><code>var source =
-  '&lt;ul&gt;'
-+    '&lt;% for (var i = 0; i &lt; list.length; i ++) { %&gt;'
-+        '&lt;li&gt;索引 &lt;%= i + 1 %&gt; ：&lt;%= list[i] %&gt;&lt;/li&gt;'
-+    '&lt;% } %&gt;'
-+ '&lt;/ul&gt;';
-
-var data = {
-    list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
-};
-
-var render = template.compile(source);
-var html = render(data);
-document.getElementById('content').innerHTML = html;
-</code></pre>
-
-<p><a href="http://aui.github.com/artTemplate/demo/compile.html">演示</a></p>
-
-<h2>
-<a name="%E6%B7%BB%E5%8A%A0%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95" class="anchor" href="#%E6%B7%BB%E5%8A%A0%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95"><span class="octicon octicon-link"></span></a>添加辅助方法</h2>
-
-<p><code>template.helper(name, callback)</code>辅助方法一般用来进行字符串替换，如 UBB 替换、脏话替换等。</p>
-
-<p>例如扩展一个UBB替换方法：</p>
-
-<pre><code>template.helper('$ubb2html', function (content) {
-    return content
-    .replace(/\[b\]([^\[]*?)\[\/b\]/igm, '&lt;b&gt;$1&lt;/b&gt;')
-    .replace(/\[i\]([^\[]*?)\[\/i\]/igm, '&lt;i&gt;$1&lt;/i&gt;')
-    .replace(/\[u\]([^\[]*?)\[\/u\]/igm, '&lt;u&gt;$1&lt;/u&gt;')
-    .replace(/\[url=([^\]]*)\]([^\[]*?)\[\/url\]/igm, '&lt;a href="$1"&gt;$2&lt;/a&gt;')
-    .replace(/\[img\]([^\[]*?)\[\/img\]/igm, '&lt;img src="$1" /&gt;');
-});
-</code></pre>
-
-<p>在模板中的使用方式：</p>
-
-<pre><code>&lt;%=$ubb2html(content) %&gt;
-</code></pre>
-
-<p>注意：引擎不会对辅助方法输出的 HTML 字符进行转义。</p>
-
-<p><a href="http://aui.github.com/artTemplate/demo/helper.html">演示</a></p>
-
-<h2>
-<a name="%E8%AE%BE%E7%BD%AE%E7%95%8C%E5%AE%9A%E7%AC%A6" class="anchor" href="#%E8%AE%BE%E7%BD%AE%E7%95%8C%E5%AE%9A%E7%AC%A6"><span class="octicon octicon-link"></span></a>设置界定符</h2>
-
-<p>若前端模板语法与后端语法产生冲突，可以修改模板引擎界定符，例如：</p>
-
-<pre><code>template.openTag = "&lt;!--[";
-template.closeTag = "]--&gt;";
-</code></pre>
-
-<p><a href="http://aui.github.com/artTemplate/demo/tag.html">演示</a></p>
-
-<h2>
-<a name="%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95" class="anchor" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95"><span class="octicon octicon-link"></span></a>自定义语法</h2>
-
-<p>artTemplate 提供一个语法扩展用来简化模板逻辑语法。简洁语法示例：</p>
+<p>推荐使用，语法简单实用，利于读写。</p>
 
 <pre><code>{{if admin}}
-    &lt;h3&gt;{{title}}&lt;/h3&gt;
-    &lt;ul&gt;
-        {{each list}}
-            &lt;li&gt;{{$index + 1}}: {{$value}}&lt;/li&gt;
-        {{/each}}
-    &lt;/ul&gt;
+    {{include 'admin_content'}}
+
+    {{each list}}
+        &lt;div&gt;{{$index}}. {{$value.user}}&lt;/div&gt;
+    {{/each}}
 {{/if}}
 </code></pre>
 
-<p>请引用 dist/<a href="https://raw.github.com/aui/artTemplate/master/dist/template-simple.js">template-simple.js</a> 即可使用简洁语法。</p>
+<p><a href="https://github.com/aui/artTemplate/wiki/syntax:simple">查看语法与演示</a></p>
 
-<p><a href="https://github.com/aui/artTemplate/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E6%B3%95%E6%89%A9%E5%B1%95%E8%AF%B4%E6%98%8E">完整简洁语法说明</a></p>
+<h3>
+<a name="%E5%8E%9F%E7%94%9F%E8%AF%AD%E6%B3%95" class="anchor" href="#%E5%8E%9F%E7%94%9F%E8%AF%AD%E6%B3%95"><span class="octicon octicon-link"></span></a>原生语法</h3>
+
+<pre><code>&lt;%if (admin){%&gt;
+    &lt;%include('admin_content')%&gt;
+
+    &lt;%for (var i=0;i&lt;list.length;i++) {%&gt;
+        &lt;div&gt;&lt;%=i%&gt;. &lt;%=list[i].user%&gt;&lt;/div&gt;
+    &lt;%}%&gt;
+&lt;%}%&gt;
+</code></pre>
+
+<p><a href="https://github.com/aui/artTemplate/wiki/syntax:native">查看语法与演示</a></p>
+
+<h2>
+<a name="%E4%B8%8B%E8%BD%BD" class="anchor" href="#%E4%B8%8B%E8%BD%BD"><span class="octicon octicon-link"></span></a>下载</h2>
+
+<ul>
+<li>
+<a href="https://raw.github.com/aui/artTemplate/master/dist/template.js">template.js</a> <em>(简洁语法版, 2.7kb)</em> </li>
+<li>
+<a href="https://raw.github.com/aui/artTemplate/master/dist/template-native.js">template-native.js</a> <em>(原生语法版, 2.3kb)</em>
+</li>
+</ul><h2>
+<a name="%E6%96%B9%E6%B3%95" class="anchor" href="#%E6%96%B9%E6%B3%95"><span class="octicon octicon-link"></span></a>方法</h2>
+
+<h3>
+<a name="templateid-data" class="anchor" href="#templateid-data"><span class="octicon octicon-link"></span></a>template(id, data)</h3>
+
+<p>根据 id 渲染模板。内部会根据<code>document.getElementById(id)</code>查找模板。</p>
+
+<p>如果没有 data 参数，那么将返回一渲染函数。</p>
+
+<h3>
+<a name="templatecompilesource-options" class="anchor" href="#templatecompilesource-options"><span class="octicon octicon-link"></span></a>template.<code>compile</code>(source, options)</h3>
+
+<p>将返回一个渲染函数。<a href="http://aui.github.com/artTemplate/demo/compile.html">演示</a></p>
+
+<h3>
+<a name="templaterendersource-options" class="anchor" href="#templaterendersource-options"><span class="octicon octicon-link"></span></a>template.<code>render</code>(source, options)</h3>
+
+<p>将返回渲染结果。</p>
+
+<h3>
+<a name="templatehelpername-callback" class="anchor" href="#templatehelpername-callback"><span class="octicon octicon-link"></span></a>template.<code>helper</code>(name, callback)</h3>
+
+<p>添加辅助方法。</p>
+
+<p>例如时间格式器：<a href="http://aui.github.com/artTemplate/demo/helper.html">演示</a></p>
+
+<h3>
+<a name="templateconfigname-value" class="anchor" href="#templateconfigname-value"><span class="octicon octicon-link"></span></a>template.<code>config</code>(name, value)</h3>
+
+<p>更改引擎的默认配置。</p>
+
+<table>
+<thead><tr>
+<th>字段</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>openTag</td>
+<td>String</td>
+<td><code>'{{'</code></td>
+<td>逻辑语法开始标签</td>
+</tr>
+<tr>
+<td>closeTag</td>
+<td>String</td>
+<td><code>"}}"</code></td>
+<td>逻辑语法结束标签</td>
+</tr>
+<tr>
+<td>escape</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>是否编码输出 HTML 字符</td>
+</tr>
+<tr>
+<td>cache</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>是否开启缓存（依赖 options 的 filename 字段）</td>
+</tr>
+<tr>
+<td>compress</td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>是否压缩 HTML 多余空白字符</td>
+</tr>
+</tbody>
+</table><h2>
+<a name="%E4%BD%BF%E7%94%A8%E9%A2%84%E7%BC%96%E8%AF%91" class="anchor" href="#%E4%BD%BF%E7%94%A8%E9%A2%84%E7%BC%96%E8%AF%91"><span class="octicon octicon-link"></span></a>使用预编译</h2>
+
+<p>可突破浏览器限制，让前端模板拥有后端模板一样的同步“文件”加载能力：</p>
+
+<p>一、<strong>按文件与目录组织模板</strong></p>
+
+<pre><code>template('tpl/home/main', data)
+</code></pre>
+
+<p>二、<strong>模板支持引入子模板</strong></p>
+
+<pre><code>{{include '../public/header'}}
+</code></pre>
+
+<h3>
+<a name="%E5%9F%BA%E4%BA%8E%E9%A2%84%E7%BC%96%E8%AF%91" class="anchor" href="#%E5%9F%BA%E4%BA%8E%E9%A2%84%E7%BC%96%E8%AF%91"><span class="octicon octicon-link"></span></a>基于预编译：</h3>
+
+<ul>
+<li>  可将模板转换成为非常精简的 js 文件（不依赖引擎）</li>
+<li>  使用同步模板加载接口</li>
+<li>  支持多种 js 模块输出：AMD、CMD、CommonJS</li>
+<li>  支持作为 GruntJS 插件构建</li>
+<li>  前端模板可共享给 NodeJS 执行</li>
+<li>  自动压缩打包模板</li>
+</ul><p>预编译工具：<a href="http://github.com/aui/tmodjs/">TmodJS</a></p>
 
 <h2>
 <a name="nodejs" class="anchor" href="#nodejs"><span class="octicon octicon-link"></span></a>NodeJS</h2>
@@ -206,63 +249,128 @@ template.closeTag = "]--&gt;";
 <h3>
 <a name="%E5%AE%89%E8%A3%85" class="anchor" href="#%E5%AE%89%E8%A3%85"><span class="octicon octicon-link"></span></a>安装</h3>
 
-<pre><code>$ npm install art-template -g
+<pre><code>npm install art-template -g
 </code></pre>
 
 <h3>
 <a name="%E4%BD%BF%E7%94%A8" class="anchor" href="#%E4%BD%BF%E7%94%A8"><span class="octicon octicon-link"></span></a>使用</h3>
 
 <pre><code>var template = require('art-template');
+var data = {list: ["aui", "test"]};
+
+var html = template(__dirname + '/index/main', data);
 </code></pre>
 
-<p>（简洁语法版请 <code>require('art-template/dist/template-simple')</code>）</p>
+<h3>
+<a name="%E9%85%8D%E7%BD%AE" class="anchor" href="#%E9%85%8D%E7%BD%AE"><span class="octicon octicon-link"></span></a>配置</h3>
 
-<h2>
-<a name="%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7" class="anchor" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="octicon octicon-link"></span></a>自动化工具</h2>
+<p>NodeJS 版本新增了如下默认配置：</p>
+
+<table>
+<thead><tr>
+<th>字段</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>path</td>
+<td>String</td>
+<td><code>''</code></td>
+<td>指定模板目录</td>
+</tr>
+<tr>
+<td>extname</td>
+<td>String</td>
+<td><code>'.html'</code></td>
+<td>指定模板后缀名</td>
+</tr>
+<tr>
+<td>encoding</td>
+<td>String</td>
+<td><code>'utf-8'</code></td>
+<td>指定模板编码</td>
+</tr>
+</tbody>
+</table><p>配置<code>path</code>指定模板目录可以缩短模板的路径，并且能够避免<code>include</code>语句越级访问任意路径引发安全隐患，例如：</p>
+
+<pre><code>template.config('path', __dirname);
+var html = template('index/main', data)
+</code></pre>
 
 <h3>
-<a name="%E9%A2%84%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7" class="anchor" href="#%E9%A2%84%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7"><span class="octicon octicon-link"></span></a>预编译工具</h3>
+<a name="nodejs--express" class="anchor" href="#nodejs--express"><span class="octicon octicon-link"></span></a>NodeJS + Express</h3>
 
-<p>使用它可以让前端模版不再受浏览器的限制，支持如后端模版一样按文件放置、include 语句等特性，可以像后端一样书写前端模板！</p>
-
-<p>项目主页：<a href="https://github.com/aui/tmodjs">https://github.com/aui/tmodjs</a></p>
-
-<h3>
-<a name="%E6%8A%BD%E5%8F%96%E5%B7%A5%E5%85%B7" class="anchor" href="#%E6%8A%BD%E5%8F%96%E5%B7%A5%E5%85%B7"><span class="octicon octicon-link"></span></a>抽取工具</h3>
-
-<p><a href="http://aui.github.com/artTemplate/tools/combine.html">./tools/combine.html</a></p>
-
-<p>可以把 HTML 中的模板提取出来以便把模板嵌入到 js 文件中。</p>
-
-<p>与编译工具不同的是，抽取后的模板仍然依赖引擎运行。</p>
-
-<h2>
-<a name="%E6%A8%A1%E6%9D%BF%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83" class="anchor" href="#%E6%A8%A1%E6%9D%BF%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83"><span class="octicon octicon-link"></span></a>模板编码规范</h2>
-
-<p>1、不能使用 javascript 关键字作为模板变量(包括 ECMA5 严格模式下新增的关键字):</p>
-
-<blockquote>
-<p>break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with, abstract, boolean, byte, char, class, const, double, enum, export, extends, final, float, goto, implements, import, int, interface, long, native, package, private, protected, public, short, static, super, synchronized, throws, transient, volatile, arguments, let, yield</p>
-</blockquote>
-
-<p>2、模板运行在沙箱中，内部无法访问外部变量，除非给模板定义辅助方法。例如：</p>
-
-<pre><code>template.helper('Math', Math)
+<pre><code>app.register('.html', require('art-template'));
 </code></pre>
 
 <blockquote>
-<p>模板中若任意引用外部对象，复杂的依赖管理将会让项目难以维护，这种方式将利于后续模板迁移（包括通过工具预编译）。</p>
+<p>若使用 js 原生语法作为模板语法，请改用 <code>require('art-template/node/template-native.js')</code></p>
 </blockquote>
 
 <h2>
-<a name="%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95" class="anchor" href="#%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95"><span class="octicon octicon-link"></span></a>更新记录</h2>
+<a name="%E5%8D%87%E7%BA%A7%E5%8F%82%E8%80%83" class="anchor" href="#%E5%8D%87%E7%BA%A7%E5%8F%82%E8%80%83"><span class="octicon octicon-link"></span></a>升级参考</h2>
+
+<p>为了适配 NodeJS express，artTemplate v3.0.0 接口有调整。</p>
 
 <h3>
+<a name="%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4" class="anchor" href="#%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4"><span class="octicon octicon-link"></span></a>接口变更</h3>
+
+<ol>
+<li> 默认使用简洁语法</li>
+<li>
+<code>template.render()</code>方法的第一个参数不再是 id，而是模板字符串</li>
+<li>使用新的配置接口<code>template.config()</code>并且字段名有修改</li>
+<li>
+<code>template.compile()</code>方法不支持 id 参数</li>
+<li>helper 方法不再强制原文输出，是否编码取决于模板语句</li>
+<li>
+<code>template.helpers</code> 中的<code>$string</code>、<code>$escape</code>、<code>$each</code>已迁移到<code>template.utils</code>中</li>
+</ol><h3>
+<a name="%E5%8D%87%E7%BA%A7%E6%96%B9%E6%B3%95" class="anchor" href="#%E5%8D%87%E7%BA%A7%E6%96%B9%E6%B3%95"><span class="octicon octicon-link"></span></a>升级方法</h3>
+
+<ol>
+<li>如果想继续使用 js 原生语法作为模板语言，请使用 <a href="https://raw.github.com/aui/artTemplate/master/dist/template-native.js">template-native.js</a>
+</li>
+<li>查找项目<code>template.render</code>替换为<code>template</code>
+</li>
+<li>使用<code>template.config(name, value)</code>来替换以前的配置</li>
+</ol><h2>
+<a name="%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97" class="anchor" href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97"><span class="octicon octicon-link"></span></a>更新日志</h2>
+
+<h3>
+<a name="v300" class="anchor" href="#v300"><span class="octicon octicon-link"></span></a>v3.0.0</h3>
+
+<ol>
+<li>提供 NodeJS 专属版本，支持使用路径加载模板，并且模板的<code>include</code>语句也支持相对路径</li>
+<li>适配 <a href="http://expressjs.com">express</a> 框架</li>
+<li>内置<code>print</code>语句支持传入多个参数</li>
+<li>支持全局缓存配置</li>
+<li>简洁语法版支持管道风格的 helper 调用，例如：<code>{{time | dateFormat:'yyyy年 MM月 dd日 hh:mm:ss'}}</code>
+</li>
+</ol><p>当前版本接口有调整，请阅读 <a href="#%E5%8D%87%E7%BA%A7%E5%8F%82%E8%80%83">升级参考</a></p>
+
+<blockquote>
+<p>artTemplate 预编译工具 <a href="https://github.com/aui/tmodjs">TmodJS</a> 已更新</p>
+</blockquote>
+
+<h3>
+<a name="v204" class="anchor" href="#v204"><span class="octicon octicon-link"></span></a>v2.0.4</h3>
+
+<ol>
+<li> 修复低版本安卓浏览器编译后可能产生语法错误的问题（因为此版本浏览器 js 引擎存在 BUG）</li>
+</ol><h3>
 <a name="v203" class="anchor" href="#v203"><span class="octicon octicon-link"></span></a>v2.0.3</h3>
 
 <ol>
 <li> 优化辅助方法性能</li>
-<li> NodeJS 版本使用 npm 管理</li>
+<li> NodeJS 用户可以通过 npm 获取 artTemplate：<code>$ npm install art-template -g</code>
+</li>
+<li> 不转义输出语句推荐使用<code>&lt;%=#value%&gt;</code>（兼容 v2.0.3 版本之前使用的<code>&lt;%==value%&gt;</code>），而简版语法则可以使用<code>{{#value}}</code>
+</li>
+<li> 提供简版语法的合并版本 dist/<a href="https://raw.github.com/aui/artTemplate/master/dist/template-simple.js">template-simple.js</a>
+</li>
 </ol><h3>
 <a name="v202" class="anchor" href="#v202"><span class="octicon octicon-link"></span></a>v2.0.2</h3>
 
@@ -284,7 +392,7 @@ template.closeTag = "]--&gt;";
 <a name="v20-release" class="anchor" href="#v20-release"><span class="octicon octicon-link"></span></a>v2.0 release</h3>
 
 <ol>
-<li> 编译工具更名为 atc，成为 artTemplate 的子项目单独维护：<a href="https://github.com/cdc-im/atc">https://github.com/cdc-im/atc</a>
+<li> <del>编译工具更名为 atc，成为 artTemplate 的子项目单独维护：<a href="https://github.com/cdc-im/atc">https://github.com/cdc-im/atc</a></del>
 </li>
 </ol><h3>
 <a name="v20-beta5" class="anchor" href="#v20-beta5"><span class="octicon octicon-link"></span></a>v2.0 beta5</h3>
@@ -292,9 +400,9 @@ template.closeTag = "]--&gt;";
 <ol>
 <li>修复编译工具可能存在重复依赖的问题。感谢 <a href="https://github.com/warmhug" class="user-mention">@warmhug</a>
 </li>
-<li>修复<code>include</code>内部实现可能产生上下文不一致的问题。感谢 <a href="https://github.com/warmhug" class="user-mention">@warmhug</a>
+<li>修复预编译<code>include</code>内部实现可能产生上下文不一致的问题。感谢 <a href="https://github.com/warmhug" class="user-mention">@warmhug</a>
 </li>
-<li>支持使用拖拽文件到<code>compile.cmd</code>图标上进行单独编译</li>
+<li>编译工具支持使用拖拽文件进行单独编译</li>
 </ol><h3>
 <a name="v20-beta4" class="anchor" href="#v20-beta4"><span class="octicon octicon-link"></span></a>v2.0 beta4</h3>
 
@@ -307,8 +415,8 @@ template.closeTag = "]--&gt;";
 <a name="v20-beta1" class="anchor" href="#v20-beta1"><span class="octicon octicon-link"></span></a>v2.0 beta1</h3>
 
 <ol>
-<li> 对非String、Number类型的数据不输出，而Function类型求值后输出。</li>
-<li> 默认对html进行转义输出，原文输出可使用<code>&lt;%==value%&gt;</code>，也可以关闭默认的转义功能<code>template.isEscape = false</code>。</li>
+<li> 对非 String、Number 类型的数据不输出，而 Function 类型求值后输出。</li>
+<li> 默认对 html 进行转义输出，原文输出可使用<code>&lt;%==value%&gt;</code>（备注：v2.0.3 推荐使用<code>&lt;%=#value%&gt;</code>），也可以关闭默认的转义功能<code>template.defaults.escape = false</code>。</li>
 <li> 增加批处理工具支持把模板编译成不依赖模板引擎的 js 文件，可通过 RequireJS、SeaJS 等模块加载器进行异步加载。</li>
 </ol><h2>
 <a name="%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE" class="anchor" href="#%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE"><span class="octicon octicon-link"></span></a>授权协议</h2>
@@ -319,19 +427,16 @@ template.closeTag = "]--&gt;";
 
 <p><a href="http://aui.github.com/artTemplate/demo/index.html">所有演示例子</a> | <a href="http://cdc.tencent.com/?p=5723">引擎原理</a></p>
 
-<p>© cdc.tencent.com</p>
-      </section>
+<p>© tencent.com</p>
+        </section>
+
+        <footer>
+          Arttemplate is maintained by <a href="https://github.com/aui">aui</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
     </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Arttemplate maintained by <a href="https://github.com/aui">aui</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
   </body>
 </html>
