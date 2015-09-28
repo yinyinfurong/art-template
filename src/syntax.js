@@ -1,9 +1,8 @@
 // 定义模板引擎的语法
 
 
-defaults.openTag = '{{';
-defaults.closeTag = '}}';
-
+defaults.openTag = /<\/?#|${/;
+defaults.closeTag = />|}/;
 
 var filtered = function (js, filter) {
     var parts = filter.split(':');
@@ -34,11 +33,17 @@ defaults.parser = function (code, options) {
 
     
 
-    switch (key) {
+   switch (key) {
 
         case 'if':
-
-            code = 'if(' + args + '){';
+        
+            if ( !args) {//兼容匹配掉了/的情况
+                code = '}';
+            }else{
+                code = 'if(' + args + '){';
+            
+            }
+            
             break;
 
         case 'else':
@@ -56,28 +61,53 @@ defaults.parser = function (code, options) {
 
             code = '}';
             break;
+        
 
-        case 'each':
-            
-            var object = split[0] || '$data';
-            var as     = split[1] || 'as';
-            var value  = split[2] || '$value';
-            var index  = split[3] || '$index';
-            
-            var param   = value + ',' + index;
-            
-            if (as !== 'as') {
-                object = '[]';
+        case 'list':
+
+            if (!args) {
+                code = '});';
+                // break;
+            }else{
+                
+                var object = split[0] || '$data';
+                var as     = split[1] || 'as';
+                var value  = split[2] || '$value';
+                var index  = split[3] || '$index';
+                
+                var param   = value + ',' + index;
+               
+                if (as !== 'as') {
+                    object = '[]';
+                }
+                
+                code =  '$each(' + object + ',function(' + param + '){';
             }
-            
-            code =  '$each(' + object + ',function(' + param + '){';
             break;
-
-        case '/each':
-
+        case '/list':
+        
             code = '});';
             break;
 
+        case 'switch':
+            if (!args) {//兼容匹配掉了/的情况
+                code = '}';
+            }else{
+                code = 'switch(' + args + '){';
+            }
+            break;
+        case 'case':
+            code = 'case '+args+':';
+            break;
+        case 'break':
+            code = 'break;';
+            break;
+        case 'default':
+            code='default :';
+            break;
+        case '/switch':
+            code='}';
+            break;
         case 'echo':
 
             code = 'print(' + args + ');';

@@ -94,7 +94,7 @@ var KEYWORDS =
     // 关键字
     'break,case,catch,continue,debugger,default,delete,do,else,false'
     + ',finally,for,function,if,in,instanceof,new,null,return,switch,this'
-    + ',throw,true,try,typeof,var,void,while,with'
+    + ',throw,true,try,typeof,var,void,while,with,list'
 
     // 保留字
     + ',abstract,boolean,byte,char,class,const,double,enum,export,extends'
@@ -183,24 +183,35 @@ function compiler (source, options) {
     var footerCode = "return new String(" + replaces[3] + ");"
     
     // html与逻辑语法分离
-    forEach(source.split(openTag), function (code) {
-        code = code.split(closeTag);
+    forEach(source.split(openTag), function (code,index) {
+        var $0,$1;
+        var tag = code.replace(closeTag,"}}").indexOf("}}");
         
-        var $0 = code[0];
-        var $1 = code[1];
-        
+        if (index!==0 && tag !== -1 ) {
+            $0 = code.substring(0,tag);
+            $1 = code.substring(tag+1);
+        }else{
+            $0 = code;
+        }
         // code: [html]
-        if (code.length === 1) {
-            
+        if (index==0 || tag === -1) {
+
             mainCode += html($0);
          
         // code: [logic, html]
         } else {
-            
+           
             mainCode += logic($0);
+            //meirong update
             
             if ($1) {
-                mainCode += html($1);
+                if($0.indexOf('switch') < 0){
+                    mainCode += html($1);
+                }
+                else if($1.trim() !==''){
+                    mainCode += html($1);
+                }
+                
             }
         }
         
